@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\foldersfordash\CategoryController;
-use App\Http\Controllers\Admin\foldersfordash\MenuController;
-use App\Http\Controllers\Admin\foldersfordash\ReservationController;
-use App\Http\Controllers\Admin\foldersfordash\TableController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\MenuController as AdminMenuController;
+use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
+use App\Http\Controllers\Admin\TableController as AdminTableController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,10 +35,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
-    Route::resource('/categories', CategoryController::class);
-    Route::resource('/menus', MenuController::class);
-    Route::resource('/tables', TableController::class);
-    Route::resource('/reservations', ReservationController::class);
+    Route::resource('/categories', AdminCategoryController::class);
+    Route::resource('/menus', AdminMenuController::class);
+    Route::resource('/tables', AdminTableController::class);
+    Route::resource('/reservations', AdminReservationController::class);
 });
 
 require __DIR__ . '/auth.php';
